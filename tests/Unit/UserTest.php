@@ -12,10 +12,10 @@ class UserTest extends TestCase
      */
     public function test_that_user_has_title(): void
     {
-        $title = 'Eng.';
+        $name = 'Bart';
         $user = new User();
-        $user->title = $title;
+        $user->name = $name;
 
-        $this->assertSame($title, $user->getTitleAttribute());
+        $this->assertSame($name, $user->getTitleAttribute());
     }
 }
