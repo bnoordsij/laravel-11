@@ -1,0 +1,13 @@
+version: '3'
+services:
+  web:
+    build:
+      dockerfile: ci/WebDockerfile
+    ports:
+      - 8051:80
+    depends_on:
+      - app
+
+  app:
+    build:
+      dockerfile: Dockerfile
