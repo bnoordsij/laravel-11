@@ -26,16 +26,10 @@ class UserUploadController extends Controller
 
     public function save(Request $request, User $user)
     {
-        /** @var UploadedFile $file */
-        $file = $request->file('file');
-        $out = $file->store();
-
-        dd(['request',
-            $request->all(),
-            $out,
-            $file,
-            $file->hashName(),
-        ]);
+        $user
+            ->addMediaFromRequest('file')
+            ->preservingOriginal()
+            ->toMediaCollection();
 
         return back()->withSuccess('files uploaded');
     }

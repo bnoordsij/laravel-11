@@ -1,3 +1,5 @@
+@php /** @var \Spatie\MediaLibrary\MediaCollections\Models\Media $file */ @endphp
+
 @extends('layouts.app')
 
 @section('content')
@@ -5,7 +7,7 @@
             <div class="relative">
                 <div class="relative w-full max-w-2xl px-6 lg:max-w-xl mx-auto">
                     <main class="mt-6">
-                        <div class="gap-4 rounded-lg bg-white p-6 shadow">
+                        <div class="rounded-lg bg-white p-6 shadow">
                             <div class="mb-4">
                                 <h1 class="h1 font-bold text-xl">Upload files</h1>
                             </div>
@@ -19,6 +21,18 @@
 
                                 <button type="submit" class="btn-primary mt-8 bg-blue-500 hover:bg-blue-300 text-white p-4 rounded">Submit</button>
                             </form>
+
+                            @if ($user->hasMedia())
+
+                                <div class="mt-4">
+                                    <h3 class="h3">Files</h3>
+                                    @foreach($user->getMedia() as $file)
+                                        <div>
+                                            {!! $file->toHtml() !!}
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @endif
                         </div>
                     </main>
 
