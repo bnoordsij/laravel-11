@@ -27,8 +27,8 @@
                                 <div class="mt-4">
                                     <h3 class="h3">Files</h3>
                                     @foreach($user->getMedia() as $file)
-                                        <div>
-                                            {!! $file->toHtml() !!}
+                                        <div class="w-64">
+                                            {!! $file->img('', ['class' => 'w-64'])->toHtml() !!}
                                         </div>
                                     @endforeach
                                 </div>
