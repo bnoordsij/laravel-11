@@ -22,15 +22,6 @@ class UserUploadController extends Controller
 
     public function upload(User $user)
     {
-        $images = $user->getMedia();
-        /** @var Media $image */
-        $image = $images->last();
-        dump(["\$user->getMedia():",
-            $image,
-            $image->getUrl(),
-            $image->getFullUrl(),
-        ]);
-
         return view('users.upload', compact('user'));
     }
 
@@ -57,8 +48,7 @@ class UserUploadController extends Controller
         header('Content-Type: image/png');
 
         if ($media->disk === 's3') {
-            $filesystem = $this->getFilesystemOperator();
-            return $filesystem->read($media->getPath());
+            return $this->getFilesystemOperator()->read($media->getPath());
         }
 
         return file_get_contents($media->getUrl());
