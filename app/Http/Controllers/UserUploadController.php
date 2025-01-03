@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class UserUploadController extends Controller
 {
@@ -32,5 +33,12 @@ class UserUploadController extends Controller
             ->toMediaCollection();
 
         return back()->withSuccess('files uploaded');
+    }
+
+    public function deleteFile(Request $request, Media $media)
+    {
+        $media->delete();
+
+        return back()->withSuccess('file deleted');
     }
 }
