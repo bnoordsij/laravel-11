@@ -27,11 +27,11 @@
                                 <div class="mt-4">
                                     <h3 class="h3">Files</h3>
                                     @foreach($user->getMedia() as $file)
-                                        <div class="w-64 relative">
+                                        <div class="w-32 relative">
                                             <div class="absolute top-0 right-0 text-red-500 p-2">
                                                 <a href="{{ route('files.destroy', $file) }}">Delete</a>
                                             </div>
-                                            {!! $file->img('', ['class' => 'w-64'])->toHtml() !!}
+                                            {!! $file->img('', ['class' => 'w-32'])->toHtml() !!}
                                         </div>
                                     @endforeach
                                 </div>
