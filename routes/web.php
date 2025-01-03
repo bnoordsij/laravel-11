@@ -21,5 +21,7 @@ Route::group(['middleware' => ['auth']], function (Router $router) {
 
     $router->get('/users/{user}/upload', [UserUploadController::class, 'upload'])->name('user-upload.upload');
     $router->put('/users/{user}/upload', [UserUploadController::class, 'save'])->name('user-upload.update');
-    $router->get('/files/{media}', [UserUploadController::class, 'deleteFile'])->name('files.destroy');
+    $router->get('/files/{media}/delete', [UserUploadController::class, 'deleteFile'])->name('files.destroy');
+
+    $router->get('/files/{media}/show', [UserUploadController::class, 'getFile'])->name('files.show');
 });
