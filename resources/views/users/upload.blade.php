@@ -30,7 +30,7 @@
                                             <div class="absolute top-0 right-0 text-red-500 p-2">
                                                 <a href="{{ route('files.destroy', $file) }}">Delete</a>
                                             </div>
-                                            <img class="w-32" src="{{ route('files.show', 7) }}" />
+                                            <img class="w-32" src="{{ route('files.show', $file->id) }}" />
                                         </div>
                                     @endforeach
                                 </div>
