@@ -1,33 +1,30 @@
-name: Test
+name: Dusk test
 
 on:
-  workflow_dispatch:
-    inputs:
-      browser:
-        type: choice
-        description: Which browser to test
-        required: true
-        default: chrome
-        options:
-          - chrome
-          - firefox
-          - edge
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
 
 jobs:
   test:
-    name: Test
+    name: Run Dusk Test
     runs-on: ubuntu-latest
 
     services:
       selenium:
-        image: selenium/standalone-${{ github.event.inputs.browser }}
+        image: selenium/standalone-chrome
 
     steps:
       - uses: actions/checkout@v2
 
-      - run: # Your Laravel Dusk test execution goes here
+      - run: php artisan dusk:chrome-driver
         env:
-          BROWSER: ${{ github.event.inputs.browser }}
+          BROWSER: chrome
+
+      - run: php artisan dusk
+        env:
+          BROWSER: chrome
 
       - uses: actions/upload-artifact@v2
         if: always()
