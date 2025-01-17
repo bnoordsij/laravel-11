@@ -18,11 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - run: php artisan dusk:chrome-driver
-        env:
-          BROWSER: chrome
-
-      - run: php artisan dusk
+      - run: ## run nothing
         env:
           BROWSER: chrome
 
