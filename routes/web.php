@@ -11,8 +11,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/conversations', [ConversationController::class, 'index'])->name('conversations.index');
-Route::get('/conversation/{conversation?}', [ConversationController::class, 'form'])->name('conversations.form');
-Route::post('/conversation/{conversation?}', [ConversationController::class, 'save'])->name('conversations.save');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/conversations', [ConversationController::class, 'index'])->name('conversations.index');
+    Route::get('/conversation/{conversation?}', [ConversationController::class, 'form'])->name('conversations.form');
+    Route::post('/conversation/{conversation?}', [ConversationController::class, 'save'])->name('conversations.save');
+});
+
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
